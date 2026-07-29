@@ -1,0 +1,97 @@
+{
+  "vocab_size": 4096,
+  "fertility": 2.373,
+  "tokens_per_compound": 7.89,
+  "german_words_per_256_tokens": 167.7,
+  "compound_splits": {
+    "Hauptbahnhof": [
+      "Haupt",
+      "bahn",
+      "hof"
+    ],
+    "Krankenversicherung": [
+      "K",
+      "ranken",
+      "vers",
+      "icher",
+      "ung"
+    ],
+    "Aufenthaltserlaubnis": [
+      "Auf",
+      "ent",
+      "halt",
+      "ser",
+      "lau",
+      "b",
+      "nis"
+    ],
+    "Wohnungsgeberbestätigung": [
+      "Wohn",
+      "ungs",
+      "geber",
+      "best",
+      "ät",
+      "igung"
+    ],
+    "Geschwindigkeitsbegrenzung": [
+      "Gesch",
+      "windigkeit",
+      "sb",
+      "eg",
+      "r",
+      "enz",
+      "ung"
+    ],
+    "Bundesausbildungsförderungsgesetz": [
+      "Bundes",
+      "aus",
+      "bild",
+      "ungs",
+      "för",
+      "der",
+      "ungs",
+      "gesetz"
+    ],
+    "Arbeitsunfähigkeitsbescheinigung": [
+      "Arbeits",
+      "un",
+      "fäh",
+      "igkeit",
+      "s",
+      "be",
+      "schein",
+      "igung"
+    ],
+    "Donaudampfschifffahrtsgesellschaft": [
+      "Don",
+      "au",
+      "d",
+      "ampf",
+      "schiff",
+      "fahr",
+      "ts",
+      "gesellschaft"
+    ],
+    "Rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz": [
+      "R",
+      "ind",
+      "fl",
+      "ei",
+      "sch",
+      "et",
+      "ik",
+      "ett",
+      "ierungs",
+      "über",
+      "w",
+      "ach",
+      "ungs",
+      "auf",
+      "gaben",
+      "über",
+      "trag",
+      "ungs",
+      "gesetz"
+    ]
+  }
+}
