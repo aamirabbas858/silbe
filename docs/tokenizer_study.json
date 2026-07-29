@@ -1,0 +1,50 @@
+[
+  {
+    "vocab": 4096,
+    "params": 5065472,
+    "embed_params": 1048576,
+    "embed_share": 0.2070045989791277,
+    "fertility": 2.373,
+    "tokens_per_compound": 7.89,
+    "words_per_256": 167.7,
+    "chars_per_token": 3.294,
+    "val_loss": 3.678,
+    "bits_per_char": 1.6109
+  },
+  {
+    "vocab": 8192,
+    "params": 6114048,
+    "embed_params": 2097152,
+    "embed_share": 0.3430054850730645,
+    "fertility": 2.087,
+    "tokens_per_compound": 6.56,
+    "words_per_256": 194.6,
+    "chars_per_token": 3.743,
+    "val_loss": 4.1711,
+    "bits_per_char": 1.6079
+  },
+  {
+    "vocab": 16384,
+    "params": 8211200,
+    "embed_params": 4194304,
+    "embed_share": 0.5108028059236165,
+    "fertility": 1.856,
+    "tokens_per_compound": 5.44,
+    "words_per_256": 211.5,
+    "chars_per_token": 4.189,
+    "val_loss": 4.5508,
+    "bits_per_char": 1.5674
+  },
+  {
+    "vocab": 32768,
+    "params": 12405504,
+    "embed_params": 8388608,
+    "embed_share": 0.6762004993912379,
+    "fertility": 1.68,
+    "tokens_per_compound": 4.33,
+    "words_per_256": 221.1,
+    "chars_per_token": 4.604,
+    "val_loss": 5.0584,
+    "bits_per_char": 1.585
+  }
+]
