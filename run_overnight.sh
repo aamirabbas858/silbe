@@ -13,7 +13,18 @@
 set -u
 cd "$(dirname "$0")"
 
-echo "[$(date '+%H:%M:%S')] waiting for the small run to finish"
+# Hold a sleep assertion for the WHOLE script, including the waiting period.
+#
+# Without this there is a gap: the small run's own caffeinate dies when it
+# finishes, and this script polls every 60 seconds before starting the next
+# one. This machine is set to sleep after 1 minute idle, so that gap is
+# enough for the Mac to sleep and the overnight run to never begin.
+#
+# -w waits on this script's PID, so the assertion lives exactly as long as
+# the script does and is released automatically when it exits.
+caffeinate -i -w $$ &
+
+echo "[$(date '+%H:%M:%S')] waiting for the small run to finish (sleep held)"
 
 # Poll rather than `wait` — the small run was started by a different shell,
 # so this process is not its parent and cannot wait on it directly.
