@@ -1,0 +1,9 @@
+checkpoints/
+data/raw/
+data/*.bin
+data/*.txt
+*.safetensors
+*.npz
+__pycache__/
+.venv/
+.DS_Store
