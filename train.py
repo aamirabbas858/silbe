@@ -26,6 +26,7 @@ import mlx.core as mx
 import mlx.nn as nn
 import mlx.optimizers as optim
 import numpy as np
+from mlx.utils import tree_flatten, tree_unflatten
 
 sys.path.insert(0, str(Path(__file__).parent))
 from model.transformer import Config, Silbe  # noqa: E402
@@ -155,11 +156,36 @@ def main() -> int:
 
     start_step = 0
     latest = run / "latest.safetensors"
+    opt_file = run / "optimizer.safetensors"
     state_file = run / "state.json"
+
     if latest.exists() and state_file.exists():
         model.load_weights(str(latest))
         start_step = json.loads(state_file.read_text())["step"]
-        print(f"resuming from step {start_step:,}\n")
+
+        # Restoring the weights is not enough to resume.
+        #
+        # The learning rate is a function of the optimiser's own step counter,
+        # and a fresh optimiser starts that counter at zero — so a resumed run
+        # replays warmup and then decays across the full schedule again,
+        # finishing at a near-maximum learning rate instead of annealed.
+        # Measured on this project: 7.9x too high at the end, which makes the
+        # resumed model worse than the checkpoint it started from.
+        #
+        # AdamW's momentum estimates matter too. Discarding them makes the
+        # first steps after a resume noticeably worse until they rebuild.
+        if opt_file.exists():
+            opt.state = tree_unflatten(list(mx.load(str(opt_file)).items()))
+            print(f"resuming from step {start_step:,} with optimiser state")
+        else:
+            # Older checkpoints predate optimiser saving. Advancing the step
+            # counter alone still fixes the schedule, which is the part that
+            # changes the final model rather than just the next few steps.
+            opt.init(model.trainable_parameters())
+            opt.state["step"] = mx.array(start_step)
+            print(f"resuming from step {start_step:,} — no optimiser state saved, "
+                  f"schedule position restored, momentum will rebuild")
+        print()
 
     rng = np.random.default_rng(1337 + start_step)
     history_file = run / "history.jsonl"
@@ -216,6 +242,12 @@ def main() -> int:
 
         if step % cfg["checkpoint_every"] == 0 or stopping["now"] or step == cfg["max_steps"]:
             model.save_weights(str(latest))
+            # Saved with the weights, not separately: a checkpoint that cannot
+            # resume the schedule is not a checkpoint.
+            mx.save_safetensors(
+                str(opt_file),
+                {k: v for k, v in tree_flatten(opt.state) if isinstance(v, mx.array)},
+            )
             state_file.write_text(json.dumps({"step": step, "best_val": best_val}))
             if stopping["now"]:
                 print(f"\n\ninterrupted — saved at step {step}. "
