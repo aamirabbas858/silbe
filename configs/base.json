@@ -1,0 +1,15 @@
+{
+  "name": "base",
+  "n_layers": 10,
+  "n_heads": 8,
+  "n_embd": 512,
+  "block_size": 512,
+  "vocab_size": 16384,
+  "batch_size": 24,
+  "max_steps": 30000,
+  "learning_rate": 0.0004,
+  "warmup_steps": 400,
+  "eval_every": 500,
+  "eval_batches": 40,
+  "checkpoint_every": 500
+}
