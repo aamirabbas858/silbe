@@ -35,7 +35,7 @@ be used in an application.** Read the limitations before anything else.
 | Parameters | 20.45M |
 | Layers / heads / width | 8 / 8 / 384 |
 | Context | 256 tokens |
-| Vocabulary | 16,384 (byte-level BPE, trained on the same corpus) |
+| Vocabulary | 16,384 byte-level BPE, trained on the same corpus — [aamirabbas858/silbe-tokenizers](https://huggingface.co/aamirabbas858/silbe-tokenizers) |
 | Attention | causal multi-head, RoPE on queries and keys |
 | Normalisation | RMSNorm, pre-norm |
 | Feed-forward | SwiGLU, hidden width 8/3 × d_model |
