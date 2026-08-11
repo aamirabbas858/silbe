@@ -9,6 +9,17 @@ from text.
 *Silbe* is German for **syllable** — which is what a tokenizer produces: language
 cut into pieces small enough for a machine to count.
 
+**Weights and tokenizers are published — you do not need to retrain anything:**
+
+- [`silbe-small`](https://huggingface.co/aamirabbas858/silbe-small) — the 20.45M
+  model, 78 MB, with the vocabulary it was trained on
+- [`silbe-tokenizers`](https://huggingface.co/aamirabbas858/silbe-tokenizers) —
+  all four vocabularies with measured fertility, usable on their own from
+  PyTorch, JAX or MLX
+
+The tokenizers are the part most likely to be useful to someone else. The model
+is a demonstration of the result below, not something to build on.
+
 ---
 
 ## The two findings
